@@ -1,11 +1,13 @@
 <template>
   <div class="shoutbox">
     <observe :what="$views.sessionName.sessionName()" v-slot="{ value: sessionName }">
-      <command-form v-if="!sessionName" service="sessionName" action="setSessionName" v-slot="{ data }">
+      <command-form v-if="!sessionName" service="sessionName" action="setSessionName" v-slot="{ data }"
+                    class="nameForm">
         <input type="text" placeholder="Enter yout name..." v-model="data.name" />
         <button type="submit">Save</button>
       </command-form>
-      <command-form v-else service="shoutBox" action="postMessage" reset-on-done v-slot="{ data }">
+      <command-form v-else service="shoutBox" action="postMessage" reset-on-done v-slot="{ data }"
+                    class="messageForm">
         <span class="userName" @click="resetName">{{ sessionName.name }}</span>
         <input type="text" class="messageInput" placeholder="Write message..." v-model="data.text" />
         <button type="submit">Send!</button>

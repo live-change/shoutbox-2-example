@@ -16,12 +16,6 @@ module.exports = {
   ],
   build: {
     minify: false,
-  
-    // rollupOptions: {
-    //   plugins: [        
-    //     builtinsPlugin
-    //   ]
-    // },
     commonjsOptions: {
       transformMixedEsModules: true
     }

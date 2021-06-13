@@ -10,7 +10,7 @@ exports.config = {
     Playwright: {
       browser: 'chromium',
       url: 'http://localhost:8001',
-      show: false,
+      show: true,
       emulate: {
         ...devices['Pixel 2'],
         recordVideo: process.env.RECORD_TESTS ? {
@@ -23,7 +23,7 @@ exports.config = {
     //   smartWait: 5000,
     //   browser: "chrome",
     //   restart: false,
-    //   windowSize: "maximize",
+    //   windowSize: "maximize",hi
     //   timeouts: {
     //     "script": 60000,
     //     "page load": 10000

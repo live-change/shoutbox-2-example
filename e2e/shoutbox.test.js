@@ -1,68 +1,77 @@
 const txtgen = require('txtgen')
+const randomProfile = require('random-profile-generator')
 
 Feature('shoutbox')
 
 Scenario('post message', ({ I }) => {
+
+  const user1 = randomProfile.profile()
+  const user2 = randomProfile.profile()
   
-  session('tom')
-  session('john')
+  session(user1.fullName)
+  session(user2.fullName)
 
-  const tomRandomSentence = txtgen.sentence()
-  const johnRandomSentence = txtgen.sentence()
+  const user1RandomSentence = txtgen.sentence()
+  const user2RandomSentence = txtgen.sentence()
 
-  session('tom', () => {
+  session(user1.fullName, () => {
     I.amOnPage('/')
-    I.see('Shoutbox')
-    I.fillField('input[type=text]', tomRandomSentence)
-    I.click('Send')
-    I.see(tomRandomSentence)
+    I.dontSee(user1.fullName)
+    I.dontSeeElement('.messageForm')
+    I.seeElement('form.nameForm')
+    I.fillField('.nameForm input[type=text]', user1.fullName)
+    I.click('.nameForm button[type=submit]')
+    I.dontSeeElement('.nameForm')
+    I.seeElement('.messageForm')
+    I.see(user1.fullName, '.userName')
+    I.fillField('.messageForm input[type=text]', user1RandomSentence)
+    I.click('.messageForm button[type=submit]')
+    I.see(user1.fullName, '.messageAuthor')
+    I.see(user1RandomSentence)
+    I.videoWait(2)
+  })
+  
+  session(user2.fullName, () => {
+    I.amOnPage('/')
+    I.see(user1RandomSentence)
+    I.dontSee(user2.fullName)
+    I.dontSeeElement('.messageForm')
+    I.seeElement('form.nameForm')
+    I.fillField('.nameForm input[type=text]', user2.fullName)
+    I.click('.nameForm button[type=submit]')
+    I.dontSeeElement('.nameForm')
+    I.seeElement('.messageForm')
+    I.see(user2.fullName, '.userName')
+    I.fillField('.messageForm input[type=text]', user2RandomSentence)
+    I.click('.messageForm button[type=submit]')
+    I.see(user2.fullName, '.messageAuthor')
+    I.see(user2RandomSentence)
     I.videoWait(2)
   })
 
-  session('john', () => {
-    I.amOnPage('/')
-    I.see('Shoutbox')
-    I.see(tomRandomSentence)
-    I.fillField('input[type=text]', johnRandomSentence)
-    I.click('Send')
-    I.see(johnRandomSentence)
-    I.videoWait(2)
+  session(user1.fullName, () => {
+    I.see(user2RandomSentence)
+    I.click('.userName')
+    I.dontSeeElement('.userName')
+    I.dontSee(user1.fullName)
+    I.dontSeeElement('.messageForm')
+    I.seeElement('form.nameForm')
   })
 
-  session('tom', () => {
-    I.see(johnRandomSentence)
+  session(user2.fullName, () => {
+    I.dontSee(user1.fullName)
+  })
+
+  session(user1.fullName, () => {
+    I.fillField('.nameForm input[type=text]', user1.fullName)
+    I.click('.nameForm button[type=submit]')
+    I.dontSeeElement('.nameForm')
+    I.seeElement('.messageForm')
+    I.see(user1.fullName, '.userName')
+  })
+
+  session(user2.fullName, () => {
+    I.see(user1.fullName)
   })
 
 })
-
-
-// Scenario('post another message', ({ I }) => {
-  
-//   session('tom')
-//   session('john')
-
-//   const tomRandomSentence = txtgen.sentence()
-//   const johnRandomSentence = txtgen.sentence()
-
-//   session('tom', () => {
-//     I.amOnPage('/')
-//     I.see('Shoutbox')  
-//     I.fillField('input[type=text]', tomRandomSentence)
-//     I.click('Send')
-//     I.see(tomRandomSentence)
-//   })
-
-//   session('john', () => {
-//     I.amOnPage('/')
-//     I.see('Shoutbox')
-//     I.see(tomRandomSentence)
-//     I.fillField('input[type=text]', johnRandomSentence)
-//     I.click('Send')
-//     I.see(johnRandomSentence)
-//   })
-
-//   session('tom', () => {
-//     I.see(johnRandomSentence)
-//   })
-
-// })

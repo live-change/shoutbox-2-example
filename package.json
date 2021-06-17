@@ -3,8 +3,8 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "memDev": "../cli/bin/lcli.js ssrDev --ssrRoot front --withApi --withServices --updateServices --services server/services.config.js --enableSessions --withDb --dbBackend mem --createDb",
-    "dev": "../cli/bin/lcli.js ssrDev --ssrRoot front --withApi --withServices --updateServices --services server/services.config.js --enableSessions",
+    "memDev": "lcli ssrDev --ssrRoot front --withApi --withServices --updateServices --services server/services.config.js --enableSessions --withDb --dbBackend mem --createDb",
+    "dev": "lcli ssrDev --ssrRoot front --withApi --withServices --updateServices --services server/services.config.js --enableSessions",
     "ssrDev": "lcli ssrDev",
     "serveAllMem": "cross-env NODE_ENV=production ../cli/bin/lcli.js ssrServer --ssrRoot front --withApi --withServices --updateServices --services server/services.config.js --enableSessions -withDb --dbBackend mem --createDb",
     "serveAll": "cross-env NODE_ENV=production lcli ssrServer --ssrRoot front --withApi --withServices --updateServices --services server/services.config.js --enableSessions",
@@ -18,7 +18,7 @@
     "debug": "node --inspect-brk server"
   },
   "dependencies": {
-    "@live-change/cli": "^0.1.0",
+    "@live-change/cli": "^0.1.1",
     "@live-change/dao": "^0.2.44",
     "@live-change/dao-vue3": "^0.1.12",
     "@live-change/dao-websocket": "^0.2.21",

@@ -18,7 +18,7 @@ export async function render({ url, dao, windowId }) {
   await router.isReady()
 
   // prefetch data
-  await api.preFetchRoute(router.currentRoute)
+  await api.preFetchRoute(router.currentRoute, router)
 
   // passing SSR context object which will be available via useSSRContext()
   // @vitejs/plugin-vue injects code into a component's setup() that registers

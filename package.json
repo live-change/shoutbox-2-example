@@ -1,7 +1,7 @@
 {
   "name": "shoutbox-2-example-e2e",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "scripts": {
     "memDev": "lcli ssrDev --ssrRoot front --withApi --withServices --updateServices --services server/services.config.js --enableSessions --withDb --dbBackend mem --createDb",
     "dev": "lcli ssrDev --ssrRoot front --withApi --withServices --updateServices --services server/services.config.js --enableSessions",

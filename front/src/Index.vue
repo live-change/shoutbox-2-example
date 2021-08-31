@@ -16,7 +16,7 @@
     <observe :what="$views.shoutBox.messagesByTimestamp({ reverse: true })" v-slot="{ value: messages }">
       <div class="messages">
         <div class="message" v-for="message in messages">
-          <observe :what="$views.sessionName.publicSessionName({ session: message.session })" 
+          <observe :what="$views.sessionName.publicSessionName({ session: message.session })"
             v-slot="{ value: authorName }">
             <div class="messageAuthor">
               {{ authorName?.name }}
@@ -36,7 +36,7 @@ export default {
     return [
       this.$fetch.shoutBox.messagesByTimestamp({ reverse: true })
         .with(msg => this.$fetch.sessionName.publicSessionName({
-          session: msg.session.$nonEmpty() 
+          session: msg.session.$nonEmpty()
         })),
       this.$fetch.sessionName.sessionName()
     ]
@@ -55,9 +55,9 @@ export default {
     flex-direction: column;
   }
   form {
-    display: flex;    
+    display: flex;
   }
-  input[type=text] {    
+  input[type=text] {
     padding: 5px;
     border: 1px solid gray;
     border-radius: 3px;
@@ -77,7 +77,7 @@ export default {
     flex-grow: 1;
     overflow-y: auto;
   }
-  .message {    
+  .message {
     margin: 2px;
     padding: 5px 10px;
     border-radius: 10px;
